@@ -26,8 +26,9 @@ namespace UsersAPI.Models
         public int? Experience { get; set; }
         public int? Costperhour { get; set; }
         public int? Rating { get; set; }
-        public bool? IsProvicedBooked { get; set; }
         public bool? IsNewProvider { get; set; }
+        public bool? IsProvicedBooked { get; set; }  
+
 
     }
 }

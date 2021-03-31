@@ -15,6 +15,7 @@ namespace UsersAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepo _context;
+        static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(UsersController));
 
         public UsersController(IUserRepo context)
         {
@@ -25,6 +26,7 @@ namespace UsersAPI.Controllers
         [HttpGet]
         public IEnumerable<UserServiceInfo> GetUserServiceInfos()
         {
+            _log4net.Info("Get User is Invoked");
             return  _context.GetAllUsers();
         }
 
@@ -46,6 +48,7 @@ namespace UsersAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUserServiceInfo(string id, UserServiceInfo userServiceInfo)
         {
+            _log4net.Info("Get user by  is Invoked for the id :" + id);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -59,6 +62,7 @@ namespace UsersAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<UserServiceInfo>> PostUserServiceInfo(UserServiceInfo userServiceInfo)
         {
+            _log4net.Info("Get user is Invoked to add" + userServiceInfo.Username);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -72,6 +76,8 @@ namespace UsersAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUserServiceInfo(string id)
         {
+            _log4net.Info("Get user is Invoked to delete person with Id: " + id);
+            _log4net.Error("Get user is Invoked to delete person with Id: " + id + " but failed");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
